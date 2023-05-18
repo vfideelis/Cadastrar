@@ -1,40 +1,38 @@
-var area=document.getElementById('area')
+let area = document.getElementById('area');
 let botao = document.getElementById("botao");
 
-var nomeCadastro = "Vinicius"
-function entrar(){
-    var nome = prompt("Digite seu nome")
+nomeCadastro = ["Rogerio", "Elizangela", "Vinicius", "Gabriely", "Raphael"];
+function entrar() {
 
-    if(nome === '' || nome === null){
-        alert("Ops, algo deu errado!!!")
-        area.innerHTML = "Clique no botão para acessar..."
-    }else{ 
-        if(nomeCadastro==nome){
-            area.innerHTML = "Bem Vindo " + nome + "<br><br>"
-            let botaoSair = document.createElement("button")
-            botaoSair.innerHTML = "Sair da conta"
-            botaoSair.onclick = sair
-            area.appendChild(botaoSair)
-            botao.setAttribute("hidden","true");
-        }else{
-            alert("Nome não cadastrado por favor realizar cadastro...")
-        }
+    let encontrou = false;
+    let nome = prompt("Digite o seu nome");//o usuário digitou neste momento fulano3
+
+    if (nome === '' || nome === null) {//inicio if 1
+        alert("Ops, algo deu errado!!!");
+        area.innerHTML = "Clique no botão para acessar";
+    } else {// inicio else1
+        for (let i = 0; i <= 4; i++) {//inicio do for
+            if ((nomeCadastro[i] == nome)) {//inicio if 2
+                area.innerHTML = "Bem vindo " + nome + "<br>";
+                let botaoSair = document.createElement("button");
+                botaoSair.innerText = "Sair da conta";
+                botaoSair.onclick = sair;
+                area.appendChild(botaoSair);
+                botao.setAttribute("hidden", "true");
+                encontrou = true;
+                return;
+            }// fim if 2
+        }//fim do for
+
+    }//fim else 1
+    if(encontrou == false){
+        alert("Nome não cadastrado! Por favor realize o cadastro....");
     }
-   
-}
-function sair(){
-    alert("Até mais!")
-    area.innerHTML = "Você saiu!"
-    botao.removeAttribute("hidden");
-}
 
-var exibeMensagem = function(){
-    if(true) {
-        var escopoFuncao = 'Escopo Função';
-        let escopoBloco = "Escopo Bloco";
+}//final da função entrar
 
-        console.log(escopoBloco);
-    }
-    console.log(escopoFuncao);
-    console.log(escoloBloco);
+function sair() {
+    alert("Até mais!");
+    area.innerHTML = "Você saiu"
+    botao.removeAttribute("hidden", "false");
 }
